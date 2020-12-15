@@ -4,12 +4,21 @@ var tableData = data;
 
 // YOUR CODE HERE!
 var tbody = d3.select("tbody");
+var button = d3.select("#filter-btn");
+var form = d3.select("#filters");
 
-console.log(tableData);
+function runEnter() {
+  d3.event.preventDefault();
+  var inputElement = d3.select("#datetime");
+  var inputValue = inputElement.property("value");
+  console.log(inputValue);
+  console.log(tableData);
+  var filteredData = tableData.filter(table => table.datetime === inputValue);
+console.log(filteredData);
+};
 
-tableData.forEach(function(ufodata) {
-    console.log(ufodata);
-});
+button.on("click", runEnter);
+form.on("submit", runEnter);
 
 tableData.forEach(function(ufodata) {
     console.log(ufodata);
@@ -19,5 +28,9 @@ tableData.forEach(function(ufodata) {
       console.log(key, value);
       var cell = row.append("td");
       cell.text(value);
+      var list = d3.select(".table table-striped");
+      list.append(filtered Data);
     });
   });
+
+
